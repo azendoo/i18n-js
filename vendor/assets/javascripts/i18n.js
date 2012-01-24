@@ -24,8 +24,13 @@
   // Set default separator
   I18n.defaultSeparator = ".";
 
-  // Set current locale to null
+  // Set locale to the documents language if possible
   I18n.locale = null;
+  if (root.document && root.document.documentElement) {
+    if (root.document.documentElement.lang !== "") {
+      I18n.locale = root.document.documentElement.lang;
+    }
+  }
 
   // Set the placeholder format. Accepts `{{placeholder}}` and `%{placeholder}`.
   I18n.PLACEHOLDER = /(?:\{\{|%\{)(.*?)(?:\}\}?)/gm;
